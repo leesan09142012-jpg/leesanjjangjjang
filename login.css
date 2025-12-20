@@ -1,0 +1,97 @@
+/* 전체 배경 및 기본 글꼴 설정 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #2193b0, #6dd5ed);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* 로그인 제목 */
+.login_title {
+  color: white;
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+/* 로그인 폼 박스 */
+form {
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* 리스트 초기화 */
+.login_form {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 각 줄 구조 */
+.login_form li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* 라벨 영역 */
+.col1 {
+  flex: 0 0 80px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 입력창 영역 */
+.col2 {
+  flex: 1;
+}
+
+.col2 input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* 로그인 버튼 */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 25px;
+        }
+
+        .button-container button {
+            padding: 12px 40px;
+            font-size: 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            transition: background-color 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .button-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .button-container a {
+            text-decoration: none;
+            color: #007BFF;
+            font-size: 14px;
+        }
+
+        .button-container a:hover {
+            text-decoration: underline;
+        }

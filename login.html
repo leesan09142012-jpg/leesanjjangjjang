@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <link rel="stylesheet" type="text/css" href="login.css">
+</head>
+<body>
+    <h2 class="login_title">로그인</h2>
+    <form id="loginForm" name="login" method="post">
+        <ul class="login_form">
+            <li>
+                <span class="col1">아이디</span>
+                <span class="col2"><input type="text" name="userid" placeholder="아이디"></span>
+            </li>
+            <li>
+                <span class="col1">비밀번호</span>
+                <span class="col2"><input type="password" name="pass" placeholder="비밀번호"></span>
+            </li>
+        </ul>
+        <div class="button-container">
+            <button type="submit">로그인</button>
+            <a href="hoewongaib.html">아직 회원이 아니신가요?</a>
+        </div>
+    </form>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+
+            if (!form.userid.value.trim()) return alert("아이디를 입력하세요.");
+            if (!form.pass.value) return alert("비밀번호를 입력하세요.");
+
+            const payload = {
+                userid: form.userid.value.trim(), // API 키명에 맞춰 수정
+                password: form.pass.value
+            };
+
+            try {
+                const res = await fetch('http://localhost:3000/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json();
+                alert(data.msg || (data.ok ? '로그인 성공' : '로그인 실패'));
+                if (data.ok) {
+                    location.href = 'index.html';
+                }
+            } catch (err) {
+                alert("서버 연결 오류가 발생했습니다.");
+                console.error(err);
+            }
+        });
+    </script>
+</body>
+</html>

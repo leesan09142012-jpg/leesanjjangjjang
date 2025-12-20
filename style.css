@@ -1,0 +1,91 @@
+body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 40px;
+      background-color: #f5f5f5;
+      background-image: url(피자.jpg);
+      background-size: 100%;
+      -webkit-user-select: none; /* Safari */
+      -moz-user-select: none;    /* Firefox */
+      -ms-user-select: none;     /* IE / Edge */
+      user-select: none;         /* 표준 */
+}
+#text-display {
+      width: 80%;
+      margin: 0 auto 30px;
+      font-size: 20px;
+      line-height: 1.6;
+      text-align: left;
+      white-space: pre-wrap;
+      border: 1px solid #ccc;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+}
+    #text-input {
+      width: 80%;
+      font-size: 18px;
+      padding: 10px;
+      border: 2px solid #aaa;
+      border-radius: 5px;
+    }
+    .correct {
+      color: green;
+    }
+    .incorrect {
+      color: red;
+    }
+    #message {
+      margin-top: 20px;
+      font-size: 20px;
+      color: blue;
+    }
+#timer {
+    font-size: 50px;
+    margin-top: 20px;
+    color: rgb(255, 0, 0);
+}
+#startBtn {
+  width: 100px;
+  font-size: 20px;
+  color: #ff00e1;
+  margin: 30px;
+}
+
+h1 {
+  color:  rgb(255, 2, 2);
+  font-size: 50px;
+
+}
+
+.user-status {
+  position: fixed;
+  right: 16px;
+  top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  z-index: 9999;
+}
+
+.user-status a, .user-status button {
+  border: 1px solid #ddd;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+.user-status button { background: #f5f5f5; }
+
+
+
+#login {
+  margin: 10px;
+  font-size: 20px;
+}
+#hoewongaib {
+  margin: 10px;
+  font-size: 20px;
+}
+
