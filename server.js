@@ -18,9 +18,9 @@ app.use(session({
 }));
 
 const db = mysql.createConnection({
-  host: 'myapp-database.ct6i6k0ou217.ap-southeast-2.rds.amazonaws.com', // 1단계에서 복사한 RDS 엔드포인트
-  user: 'leesan',      // 1단계에서 설정한 마스터 사용자 이름
-  password: 'leesan09141', // 1단계에서 설정한 마스터 암호
+  host: 'localhost', 
+  user: 'root',     
+  password: 'leesanjjangjjang', 
   database: 'myappdb'
 });
 
