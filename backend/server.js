@@ -25,17 +25,17 @@ app.use(session({
   }
 }));
 
-// Supabase PostgreSQL 연결
+// Render PostgreSQL 연결
 const db = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false }
 });
 
 db.connect()
-  .then(() => console.log('Supabase PostgreSQL에 성공적으로 연결되었습니다.'))
+  .then(() => console.log('PostgreSQL에 성공적으로 연결되었습니다.'))
   .catch(err => console.error('데이터베이스 연결 오류:', err));
 
-// ================== 테이블 자동 생성 ==================
+// 테이블 자동 생성
 async function initDB() {
   await db.query(`
     CREATE TABLE IF NOT EXISTS users (
@@ -76,7 +76,7 @@ app.post('/api/register', async (req, res) => {
     console.log(`새로운 사용자 등록: ${userid}`);
     res.status(201).json({ ok: true, msg: '회원가입 성공!' });
   } catch (err) {
-    if (err.code === '23505') { // PostgreSQL unique violation
+    if (err.code === '23505') {
       return res.status(409).json({ ok: false, msg: '이미 존재하는 아이디입니다.' });
     }
     console.error('회원가입 중 오류 발생:', err);
