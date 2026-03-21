@@ -1,7 +1,7 @@
 const express = require('express');
 const serverless = require('serverless-http');
 const { Pool } = require('pg');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 
