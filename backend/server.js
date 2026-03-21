@@ -1,20 +1,28 @@
 const express = require('express');
 const mysql = require('mysql2');
-const path = require('path');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
+const cors = require('cors');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5500';
+
+app.use(cors({
+  origin: FRONTEND_URL,
+  credentials: true
+}));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('.'));
 app.use(express.json());
 app.use(session({
-  secret: 'secret-key',
+  secret: process.env.SESSION_SECRET || 'secret-key',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false }
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
+  }
 }));
 
 const db = mysql.createConnection({
@@ -166,10 +174,10 @@ app.get('/api/progress', (req, res) => {
 
 // 루트
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'login.html'));
+  res.json({ status: 'ok', msg: 'Backend is running' });
 });
 
 // 서버 시작 (모든 라우트 선언 뒤)
 app.listen(port, () => {
-  console.log(`서버가 http://localhost:${port} 에서 실행 중입니다.`);
+  console.log(`서버가 포트 ${port}에서 실행 중입니다.`);
 });
