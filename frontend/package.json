@@ -1,0 +1,12 @@
+{
+  "name": "leesanjjangjjang-frontend",
+  "version": "1.0.0",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.0",
+    "serverless-http": "^3.2.0"
+  }
+}

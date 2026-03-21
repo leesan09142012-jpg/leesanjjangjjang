@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         typed_text: inputEl.value || '',
         current_index: currentIndex
       };
-      const res = await fetch(API_URL + '/api/progress', {
+      const res = await fetch('/api/progress', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function restoreProgressFromServer() {
     try {
-      const res = await fetch(`${API_URL}/api/progress?lesson_id=${encodeURIComponent(lessonId)}`, {
+      const res = await fetch(`/api/progress?lesson_id=${encodeURIComponent(lessonId)}`, {
         credentials: 'include'
       });
       const data = await res.json();
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==== 로그인 상태 표시 ====
   async function refreshUserStatus(box) {
     try {
-      const res = await fetch(API_URL + '/api/me', { credentials: 'include' });
+      const res = await fetch('/api/me', { credentials: 'include' });
       const data = await res.json();
       if (data.ok) {
         const displayName = (data.name && data.name.trim()) ? data.name : data.userid;
@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <button id="logoutBtn" type="button">로그아웃</button>
         `;
         document.getElementById('logoutBtn').addEventListener('click', async () => {
-          await fetch(API_URL + '/api/logout', { credentials: 'include' });
+          await fetch('/api/logout', { credentials: 'include' });
           refreshUserStatus(box);
         });
       } else {

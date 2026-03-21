@@ -1,2 +1,2 @@
-// Render 백엔드 URL (배포 후 실제 URL로 변경하세요)
-const API_URL = 'https://leesanjjangjjang-backend.onrender.com';
+// 같은 Netlify 도메인이므로 빈 문자열
+const API_URL = '';
