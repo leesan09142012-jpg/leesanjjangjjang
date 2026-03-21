@@ -80,8 +80,8 @@ app.post('/api/register', async (req, res) => {
     if (err.code === '23505') {
       return res.status(409).json({ ok: false, msg: '이미 존재하는 아이디입니다.' });
     }
-    console.error('회원가입 오류:', err);
-    res.status(500).json({ ok: false, msg: '서버 오류가 발생했습니다.' });
+    console.error('회원가입 오류:', err.message, err.code, err.stack);
+    res.status(500).json({ ok: false, msg: '서버 오류: ' + err.message });
   }
 });
 
