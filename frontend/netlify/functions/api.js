@@ -114,18 +114,6 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// 현재 로그인 정보
-app.get('/api/me', (req, res) => {
-  const token = req.cookies.token;
-  if (!token) return res.json({ ok: false });
-  try {
-    const user = jwt.verify(token, JWT_SECRET);
-    return res.json({ ok: true, userid: user.userid, name: user.name });
-  } catch {
-    return res.json({ ok: false });
-  }
-});
-
 // 로그아웃
 app.get('/api/logout', (req, res) => {
   res.clearCookie('token', {
@@ -137,14 +125,26 @@ app.get('/api/logout', (req, res) => {
   res.json({ ok: true, msg: '로그아웃 성공!' });
 });
 
-// 전체 진행 상태 리셋
-app.get('/api/reset-progress', async (req, res) => {
+// 현재 로그인 정보 + 진행 리셋
+app.get('/api/me', async (req, res) => {
+  // ?reset=all 쿼리 파라미터로 전체 진행 리셋
+  if (req.query.reset === 'all') {
+    try {
+      await db.query('DELETE FROM progress');
+      return res.json({ ok: true, msg: '모든 진행 상태가 리셋되었습니다.' });
+    } catch (err) {
+      console.error('리셋 오류:', err);
+      return res.status(500).json({ ok: false, msg: '서버 오류' });
+    }
+  }
+
+  const token = req.cookies.token;
+  if (!token) return res.json({ ok: false });
   try {
-    await db.query('DELETE FROM progress');
-    res.json({ ok: true, msg: '모든 진행 상태가 리셋되었습니다.' });
-  } catch (err) {
-    console.error('리셋 오류:', err);
-    res.status(500).json({ ok: false, msg: '서버 오류' });
+    const user = jwt.verify(token, JWT_SECRET);
+    return res.json({ ok: true, userid: user.userid, name: user.name });
+  } catch {
+    return res.json({ ok: false });
   }
 });
 
