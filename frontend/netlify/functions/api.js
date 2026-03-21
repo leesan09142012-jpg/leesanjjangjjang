@@ -138,7 +138,7 @@ app.get('/api/logout', (req, res) => {
 });
 
 // 전체 진행 상태 리셋
-app.post('/api/reset-progress', async (req, res) => {
+app.get('/api/reset-progress', async (req, res) => {
   try {
     await db.query('DELETE FROM progress');
     res.json({ ok: true, msg: '모든 진행 상태가 리셋되었습니다.' });
