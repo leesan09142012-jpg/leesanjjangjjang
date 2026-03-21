@@ -128,8 +128,24 @@ app.get('/api/me', (req, res) => {
 
 // 로그아웃
 app.get('/api/logout', (req, res) => {
-  res.clearCookie('token');
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'Lax',
+    path: '/'
+  });
   res.json({ ok: true, msg: '로그아웃 성공!' });
+});
+
+// 전체 진행 상태 리셋
+app.post('/api/reset-progress', async (req, res) => {
+  try {
+    await db.query('DELETE FROM progress');
+    res.json({ ok: true, msg: '모든 진행 상태가 리셋되었습니다.' });
+  } catch (err) {
+    console.error('리셋 오류:', err);
+    res.status(500).json({ ok: false, msg: '서버 오류' });
+  }
 });
 
 // 진행 저장
