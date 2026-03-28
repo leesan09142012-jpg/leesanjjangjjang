@@ -1,18 +1,19 @@
 {
-  "name": "aaak",
+  "name": "leesanjjangjjang",
   "version": "1.0.0",
-  "description": "",
-  "main": "script.js",
+  "description": "코딩 타자 연습 서비스",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
-    "bcrypt": "^6.0.0",
-    "express": "^5.1.0",
-    "express-session": "^1.18.2",
-    "mysql2": "^3.14.3"
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.0"
   }
 }
